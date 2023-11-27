@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Mind Reader</title>
+   <style>
+      body {
+         width: 100%;
+         height: 100%;
+         overflow: hidden;
+         background-color: #333;
+         color: white;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         font-family: 'Eyes', Arial, Helvetica, sans-serif;
+         font-size: 20px;
+         box-sizing: border-box;
+      }
+
+      .body {
+         display: flex;
+         justify-content: center;
+         flex-direction: column;
+         height: 200px;
+         width: 400px;
+         text-align: center;
+         line-height: 0.01;
+         margin-bottom: 10px;
+         position: relative;
+         padding-top: 200px;
+      }
+
+      .body p {
+         padding: 0px;
+         font-size: 25px;
+      }
+
+      
+      .popup {
+         background-color: #333;
+         border: 5px inset white;
+         position: absolute; 
+         left: 50%;
+         top: 50%;
+         transform: translate(-50%, -50%);
+         height: 600px;
+         width: 900px;
+         font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .popupinside {
+         width: 500px;
+         height: 300px;
+         position: absolute;
+         left: 50%;
+         top: 50%;
+         transform: translate(-50%, -50%);
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         flex-direction: column;
+         font-size: 50px;
+         text-align: center;
+      }
+
+      .popup2 {
+         background-color: #333;
+         border: 5px inset white;
+         position: absolute; 
+         left: 50%;
+         top: 50%;
+         transform: translate(-50%, -50%);
+         height: 550px;
+         width: 600px;
+         font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .popupinside2 {
+         width: 400px;
+         height: 200px;
+         position: absolute;
+         left: 50%;
+         top: 50%;
+         transform: translate(-50%, -50%);
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         flex-direction: column;
+         font-size: 40px;
+         text-align: center;
+      }
+
+      .okay {
+         width: 80px;
+         height: 50px;
+         background-color: green;
+         color: white;
+         border-radius: 3px;
+         font-size: 25px;
+         cursor: pointer;
+      }
+      
+
+      .input {
+         display: flex;
+         justify-content: center;
+
+      }
+
+      .input input {
+         width: 200px;
+         height: 30px;
+         background-color: white;
+      }
+
+      
+      
+      .input button {
+         width: 100px;
+         height: 36px;
+         margin-left: 5px;
+         border: 1px outset black;
+         border-radius: 3px;
+         cursor: pointer;
+         color: black;
+         background-color: rgb(5, 213, 5);
+      }
+
+      .progress-bar {
+         background-color: rgb(235, 228, 215);
+         height: 100px;
+         width: 500px;
+         border: 1px solid rgb(117, 107, 107);
+      }
+
+      .progress {
+         border: 1px solid green;
+         background-color: green;
+         height: 100px;
+         width: 1px;
+      }
+
+      @media screen and (max-width: 480px) {
+         body {
+           background-color: #333;
+         }
+
+         .popup {
+            background-color: #333;
+            border: 5px inset white;
+            position: absolute; 
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            height: 300px;
+            width: 360px;
+            font-family: Arial, Helvetica, sans-serif;
+         }
+
+         .popupinside {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-size: 25px;
+            text-align: center;
+         }
+   
+         .popup2 {
+            background-color: #333;
+            border: 5px inset white;
+            position: absolute; 
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            height: 275px;
+            width: 330px;
+            font-family: Arial, Helvetica, sans-serif;
+         }
+   
+         .popupinside2 {
+            width: 200px;
+            height: 100px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-size: 20px;
+            text-align: center;
+         }
+
+         .progress-bar {
+            background-color: rgb(235, 228, 215);
+            height: 50px;
+            width: 250px;
+            border: 1px solid rgb(117, 107, 107);
+         }
+   
+         .progress {
+            border: 1px solid green;
+            background-color: green;
+            height: 50px;
+            width: 1px;
+         }
+       }
+
+      @font-face {
+         font-family: 'Eyes';
+         src: url(Toxia-OwOA.ttf);
+      }
+   </style>
+</head>
+<body>
+      <audio controls loop autoplay style="display: none;">
+         <source src="myAudio.mp3" type="audio/mp3">
+         Your browser does not support the audio element.
+      </audio>
+  
+      <div class="body">
+         <p>ILL READ YOUR MIND</p>
+         <p>Think of a Number between 1 to 10</p>
+         <div class="input">
+            <input type="number" placeholder="Enter Number" class="user-input">
+            <button onclick="startMind()">Read my mind</button>
+         </div>
+
+      </div>
+   <div class="popup" style="display: none;">
+      <div class="popupinside">
+         <p class="text"></p>
+         <div class="progress-bar">
+            <div class="progress"></div>
+         </div>
+      </div>
+   </div>
+   <div class="popup2" style="display: none;">
+      <div class="popupinside2">
+         <div class="display"></div>
+         <button class="okay" onclick="okay()">Okay</button>
+      </div>
+   </div>
+
+   <script>
+      const userInput = document.querySelector('.user-input');
+      const popUp = document.querySelector('.popup');
+      const bar = document.querySelector('.progress');
+      const prog = document.querySelector('.progress-bar');
+      const text = document.querySelector('.text');
+      const display = document.querySelector('.popup2');
+      const displayText = document.querySelector('.display');
+      let analyze;
+      let scan;
+      let calc;
+      let thought;
+      let answer;
+      let myBar;
+      let width = 0;
+
+      function startMind() {
+         if (userInput.value === '') {
+            alert('Insert a Number Bitch!');
+         } else if (userInput.value < 1 || userInput.value > 10) {
+            alert('Cant You Read BITCH?');
+         } else {
+            popUp.style.display = 'block';
+            readMind();
+         }
+      }
+
+      function readMind() {
+         clearInterval(myBar);
+         width = 0;
+         clearInterval(analyze);
+         clearInterval(scan);
+         clearInterval(calc);
+         clearInterval(thought);
+         clearInterval(answer);
+         analyze = setTimeout(() => {
+            text.innerHTML = 'Analyzing BrainWaves...';
+         }, 100);
+         scan = setTimeout(() => {
+            text.innerHTML = 'Scanning Memories...';
+         }, 3000);
+         calc = setTimeout(() => {
+            text.innerHTML = 'Calculating Probabilities...';
+         }, 6000);
+         thought = setTimeout(() => {
+            text.innerHTML = 'Decoding Thoughts...';
+         }, 8000);
+         answer = setTimeout(() => {
+            popUp.style.display = 'none';
+            displayAnswer();
+         }, 10000);
+         myBar = setInterval(() => {
+            width += 1;
+            if (width < 100) {
+               prog.style.display = 'block';
+               bar.style.width = width + '%';
+               display.style.display = 'none';
+            } else {
+               prog.style.display = 'none';
+               display.style.display = 'block';
+            }
+         }, 100);
+      }
+
+      function displayAnswer() {
+         displayText.innerHTML = `You're thinking of Number ${userInput.value}`;
+      }
+
+      function okay() {
+         clearInterval(myBar); 
+         display.style.display = 'none';
+      }
+   </script>
+</body>
+</html>
